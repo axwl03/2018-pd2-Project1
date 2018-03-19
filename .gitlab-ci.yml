@@ -1,0 +1,151 @@
+stages:
+  - Build
+  - Protocal test
+  - Battle
+  - Stability
+  - Style
+
+Build with Makefile (required):
+  stage: Build
+  before_script:
+    - "cp /tmp/$(basename $(readlink -f ../)) platform_env"
+    - source platform_env
+    - git checkout $SHA
+  script:
+    - rm -f player
+    - make
+    - "[[ -e player ]]"
+  artifacts:
+    paths:
+      - player
+      - platform_env
+  except:
+    - pushes
+    - web
+
+Card registering (10%):
+  stage: Protocal test
+  dependencies:
+    - Build with Makefile (required)
+  script:
+    - debugtool ./player -r
+  except:
+    - pushes
+    - web
+
+Communicate with server (15%):
+  stage: Protocal test
+  dependencies:
+    - Build with Makefile (required)
+  script:
+    - debugtool ./player -i
+  except:
+    - pushes
+    - web
+
+Level 1 (20%):
+  stage: Battle
+  dependencies:
+    - Build with Makefile (required)
+  before_script:
+    - source platform_env
+    - export TOKEN=$TOKEN
+    - export LEVEL=1
+  script:
+    - CR_server -1 p1 -2 p2 ./player /usr/local/bin/level1
+  allow_failure: true
+  except:
+    - pushes
+    - web
+  artifacts:
+    expire_in: 1h
+    when: always
+    paths:
+      - crashed
+
+Level 2 (10%):
+  stage: Battle
+  dependencies:
+    - Build with Makefile (required)
+  before_script:
+    - source platform_env
+    - export TOKEN=$TOKEN
+    - export LEVEL=2
+  script:
+    - CR_server -1 p1 -2 p2 ./player /usr/local/bin/level2
+  allow_failure: true
+  except:
+    - pushes
+    - web
+  artifacts:
+    expire_in: 1h
+    when: always
+    paths:
+      - crashed
+
+Level 3 (10%):
+  stage: Battle
+  dependencies:
+    - Build with Makefile (required)
+  before_script:
+    - source platform_env
+    - export TOKEN=$TOKEN
+    - export LEVEL=3
+  script:
+    - CR_server -1 p1 -2 p2 ./player /usr/local/bin/level3
+  allow_failure: true
+  except:
+    - pushes
+    - web
+  artifacts:
+    expire_in: 1h
+    when: always
+    paths:
+      - crashed
+
+Level 4 (20%):
+  stage: Battle
+  dependencies:
+    - Build with Makefile (required)
+  before_script:
+    - source platform_env
+    - export TOKEN=$TOKEN
+    - export LEVEL=4
+  script:
+    - CR_server -1 p1 -2 p2 ./player /usr/local/bin/level4
+  allow_failure: true
+  except:
+    - pushes
+    - web
+  artifacts:
+    expire_in: 1h
+    when: always
+    paths:
+      - crashed
+
+Finish correctly (10%):
+  stage: Stability
+  script:
+    - ls
+    - "[[ ! -e crashed ]]"
+  allow_failure: true
+  dependencies:
+    - Level 1 (20%)
+    - Level 2 (10%)
+    - Level 3 (10%)
+    - Level 4 (20%)
+  except:
+    - pushes
+    - web
+
+Coding style checking (5%):
+  stage: Style
+  before_script:
+    - source platform_env
+    - git checkout $SHA
+  script:
+    - bash ./.scripts/style.sh
+  allow_failure: true
+  except:
+    - pushes
+    - web
