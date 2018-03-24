@@ -32,35 +32,35 @@ void organizer::summon(void){
 	
 	for(i = 0; i < 4; i++){
 		if(card[i] == 'C' && MANA > 7){
-			cout << "1 C 5 15\n";
+			cout << "1 C 5 12\n";
 			MANA -= 7;
 		}
 		if(card[i] == '1' && MANA > 5){
-			cout << "1 1 15 15\n";
+			cout << "1 1 13 12\n";
 			MANA -= 5;
 		}
 		if(card[i] == '6' && MANA > 4){
-			cout << "1 6 5 15\n";
+			cout << "1 6 5 12\n";
 			MANA -= 4;
 		}
 		if(card[i] == '2' && MANA > 3){
-			cout << "1 2 15 15\n";
+			cout << "1 2 14 12\n";
 			MANA -= 3;
 		}
 		if(card[i] == '3'&& MANA > 2){
-			cout << "1 3 5 15\n";
+			cout << "1 3 6 12\n";
 			MANA -= 2;
 		}
 		if(card[i] == '9' && MANA > 3){
-			cout << "1 9 15 15\n";
+			cout << "1 9 15 12\n";
 			MANA -= 3;
 		}
 		if(card[i] == '4' && MANA > 6){
-			cout << "1 4 5 15\n";
+			cout << "1 4 7 12\n";
 			MANA -= 6;
 		}
 		if(card[i] == '8' && MANA > 5){
-			cout << "1 8 15 15\n";
+			cout << "1 8 16 12\n";
 			MANA -= 5;
 		}
 	}
