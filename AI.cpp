@@ -1,37 +1,40 @@
 #include <iostream>
 #include <cstdio>
 #include <string>
+#include <cstdlib>
+#include <ctime>
 #include "proj_class.h"
 using namespace std;
 
 int main(void)
 {
-	organizer AI;
-	string str, dscd;
-	int i, j, k, m, n;
-	char card[4], ch, dscdc;
-	cout << "1 2 3 6 9 C 4 8\n";
+	organizer AI;     //object
+	string str, dscd;	//str: reading first word in each line
+	int i, j, k, m, n;	//for reading numbers
+	char card[4], ch, dscdc;	//dscd dscdc: discard	
+	srand((unsigned)time(NULL));
+	cout << "1 2 3 6 9 C 4 8\n";	//initializing
 	for(;;){
 		m = 0;
 		n = 0;
 		cin >> str;
-		if(str == "BEGIN"){
+		if(str == "BEGIN"){	//BEGIN
 			AI.cleanARRAY();
 			continue;
 		}
-		if(str == "TIME"){
+		if(str == "TIME"){	//TIME
 			cin >> i;
 			AI.setTIME(i);
 		}
 		if(str == "MANA"){
 			cin >> i;
-			AI.setMANA(i);
+			AI.setMANA(i);	//MANA
 		}
-		if(str == "DECK"){
+		if(str == "DECK"){	//DECK
 			cin >> card[0] >> card[1] >> card[2] >> card[3];
 			AI.setDECK(card);     
 		}
-		if(str == "TOWER"){
+		if(str == "TOWER"){	//TOWER
 			cin >> i >> j;	//i: TOWER id, j: TOWER hp
 			AI.setTOWER(i, j);
 			while(1){
@@ -42,7 +45,7 @@ int main(void)
 				AI.setTOWER(i, j);
 			}
 		}
-		if(str == "FRIEND" || str == "ENEMY"){
+		if(str == "FRIEND" || str == "ENEMY"){	//FRIEND or ENEMY
 			while( str != "END"){
 				if(str == "FRIEND"){
 					cin >> ch >> dscd >> i >> dscdc >> j >> dscd >> k;
@@ -60,12 +63,11 @@ int main(void)
 	AI.getDATA();
 #endif
 		if(str == "END"){
-			AI.summon();
-			cout << "0\n";
+			AI.summon();	//set summon list
+			AI.position();	//set minion position and cout
+			cout << "0\n";	//terminates
 			AI.cleanARRAY();
 		}
-			
-
 	}
 
 	return 0;
