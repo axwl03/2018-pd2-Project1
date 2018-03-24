@@ -37,10 +37,7 @@ void organizer::position(void){
 			if(ENEMY[2][j] < 24){
 				n = ENEMY[2][j] - 11;
 				n = rand() % n + 11;
-				if(rand() % 2 == 0)//summon beside
-					cout << "1 " << (char)list[1][i] <<' ' <<ENEMY[1][j]-1 << ' '<< n << '\n';	//summon in front of enemy
-				else
-					cout << "1 " << (char)list[1][i] <<' ' <<ENEMY[1][j]+1 << ' '<< n << '\n';
+				cout << "1 " << (char)list[1][i] <<' ' <<(rand()%10+6) << ' '<< n << '\n';//summon between enemy and castle
 				record = 1; //record executing cout
 				break;
 			}
