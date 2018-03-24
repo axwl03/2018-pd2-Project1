@@ -10,10 +10,12 @@ int main(void)
 {
 	organizer AI;     //object
 	string str, dscd;	//str: reading first word in each line
-	int i, j, k, m, n;	//for reading numbers
+	int i, j, k, m, n, c = 0;	//for reading numbers
 	char card[4], ch, dscdc;	//dscd dscdc: discard	
 	srand((unsigned)time(NULL));
-	cout << "1 2 3 6 9 C 4 8\n";	//initializing
+//	cout << "9 4 3 6 2 C 7 8\n";	//initializing
+//	cout <<	"9 4 3 6 2 1 7 8\n";
+	cout << "9 4 3 6 2 1 7 C\n";
 	for(;;){
 		m = 0;
 		n = 0;
@@ -63,10 +65,19 @@ int main(void)
 	AI.getDATA();
 #endif
 		if(str == "END"){
-			AI.summon();	//set summon list
-			AI.position();	//set minion position and cout
+			if(c < 100){
+				AI.summon();	//set summon list
+				AI.position();	//set minion position and cout
+			}
+			else{
+				AI.summonP();   //summon powerful minion
+				AI.position();
+				if(c > 130)
+					c = 0;
+			}c++;
 			cout << "0\n";	//terminates
 			AI.cleanARRAY();
+				
 		}
 	}
 

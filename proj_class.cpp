@@ -49,17 +49,32 @@ void organizer::position(void){
 		}
 	}
 }
-
-
-void organizer::summon(void){
+void organizer::summonP(void){
 	int i, c = 0;
-	for(i = 0; i < 4; i++){
+	for(i = 0; i < 4 ; i++){
+		if(card[i] == '7' && MANA >= 8){
+			c++;
+			list[0][c-1] = c;
+			list[1][c-1] = '7';
+			MANA -= 8;
+		}
 		if(card[i] == 'C' && MANA >= 7){
 			c++;
 			list[0][c-1] = c;
 			list[1][c-1] = 'C';
 			MANA -= 7;
 		}
+		if(card[i] == '4' && MANA >= 6){
+			c++;
+			list[0][c-1] = c;
+			list[1][c-1] = '4';
+			MANA -= 6;
+		}
+	}
+}
+void organizer::summon(void){
+	int i, c = 0;
+	for(i = 0; i < 4; i++){
 		if(card[i] == '1' && MANA >= 5){
 			c++;
 			list[0][c-1] = c;
@@ -72,7 +87,7 @@ void organizer::summon(void){
 			list[1][c-1] = '6';
 			MANA -= 4;
 		}
-		if(card[i] == '2' && MANA >= 3){
+		if(card[i] == '2' && MANA >= 3 && FRIEND[0][3] != 0){
 			c++;
 			list[0][c-1] = c;
 			list[1][c-1] = '2';
@@ -90,17 +105,17 @@ void organizer::summon(void){
 			list[1][c-1] = '9';
 			MANA -= 3;
 		}
-		if(card[i] == '4' && MANA >= 6){
-			c++;
-			list[0][c-1] = c;
-			list[1][c-1] = '4';
-			MANA -= 6;
-		}
-		if(card[i] == '8' && MANA >= 5){
+		if(card[i] == '8' && MANA >= 5 && FRIEND[0][5] != 0){
 			c++;
 			list[0][c-1] = c;
 			list[1][c-1] = '8';
 			MANA -= 5;
+		}
+		if(card[i] == '5' && MANA >= 1 && FRIEND[0][4] != 0){
+			c++;
+			list[0][c-1] = c;
+			list[1][c-1] = '5';
+			MANA -= 1;
 		}
 	}
 }

@@ -12,6 +12,7 @@ class organizer{
 		void setFRIEND(char ch, int i, int j, int k, int m);
 		void setENEMY(char ch, int i, int j, int k, int n);
 		void position(void);
+		void summonP(void);
 		void summon(void);
 		void getDATA(void);
 		void cleanARRAY(void);
