@@ -28,10 +28,11 @@ void organizer::setENEMY(char ch, int i, int j, int k, int n) {
 }
 void organizer::position(void) {
     int i, n, record = 0, j;
-    for(i = 0; i < 10; i++) { //determine how many position to generate
+	srand((unsigned)time(NULL));
+    for(i = 0; i < 20; i++) { //determine how many position to generate
         if(list[0][i] == 0)
             break;//If no summon slot left, break
-        for(j = 0; j < 20; j++) { //deal with enemy closed to castle
+        for(j = 0; j < 30; j++) { //deal with enemy closed to castle
             if(ENEMY[0][j] == 0)
                 break;
             if(ENEMY[2][j] < 24) {
@@ -151,10 +152,10 @@ void organizer::cleanARRAY(void) {
     int *p = &TOWER[0][0];
     for(; p <= &TOWER[1][5]; p++)
         *p = 0;
-    for(p = &FRIEND[0][0]; p <= &FRIEND[3][19]; p++)
+    for(p = &FRIEND[0][0]; p <= &FRIEND[3][29]; p++)
         *p = 0;
-    for(p = &ENEMY[0][0]; p <= &ENEMY[3][19]; p++)
+    for(p = &ENEMY[0][0]; p <= &ENEMY[3][29]; p++)
         *p = 0;
-    for(p = &list[0][0]; p <= &list[1][9]; p++)
+    for(p = &list[0][0]; p <= &list[1][19]; p++)
         *p = 0;
 }

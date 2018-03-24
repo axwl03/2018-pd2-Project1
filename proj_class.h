@@ -17,7 +17,7 @@ class organizer {
     void getDATA(void);
     void cleanARRAY(void);
   private:
-    int TIME, MANA, TOWER[2][6], FRIEND[4][20], ENEMY[4][20], list[2][10];
+    int TIME, MANA, TOWER[2][6], FRIEND[4][30], ENEMY[4][30], list[2][20];
     char card[4];
 
 };
