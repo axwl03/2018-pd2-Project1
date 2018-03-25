@@ -28,7 +28,7 @@ void organizer::setENEMY(char ch, int i, int j, int k, int n) {
 }
 void organizer::position(void) {
     int i, n, record = 0, j;
-	srand((unsigned)time(NULL));
+    srand((unsigned)time(NULL));
     for(i = 0; i < 20; i++) { //determine how many position to generate
         if(list[0][i] == 0)
             break;//If no summon slot left, break
