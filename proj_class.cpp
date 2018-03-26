@@ -33,15 +33,15 @@ void organizer::position(void) {
         if(list[0][i] == 0)
             break;//If no summon slot left, break
 
-		if(list[1][i] == '9' || list[1][i] == '5'){
-			if(rand()%2 == 0){
-				cout << "1 " << (char)list[1][i] <<' ' <<(rand()%4+3) << ' '<<(rand()%6+1) << '\n';
-				break;
-			}else{ 
-				cout << "1 " << (char)list[1][i] <<' ' <<(rand()%4+15) << ' ' <<(rand()%6+1) << '\n';
-				break;
-			}
-		}
+        if(list[1][i] == '9' || list[1][i] == '5') {
+            if(rand()%2 == 0) {
+                cout << "1 " << (char)list[1][i] <<' ' <<(rand()%4+3) << ' '<<(rand()%6+1) << '\n';
+                break;
+            } else {
+                cout << "1 " << (char)list[1][i] <<' ' <<(rand()%4+15) << ' ' <<(rand()%6+1) << '\n';
+                break;
+            }
+        }
 
         for(j = 0; j < 30; j++) { //deal with enemy closed to castle
             if(ENEMY[0][j] == 0)
