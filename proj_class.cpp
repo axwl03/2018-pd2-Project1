@@ -27,8 +27,17 @@ void organizer::setENEMY(char ch, int i, int j, int k, int n) {
     ENEMY[3][n] = k;
 }
 void organizer::position(void) {
-    int i, n, record = 0, j;
-    srand((unsigned)time(NULL));
+    int i, n, record = 0, j, f1 = 0, f2 = 0, e1 = 0, e2 = 0;
+    for(i = 0; i < 30; i++) {
+        if(ENEMY[0][i] != 0 && ENEMY[1][i] < 11)
+            e1++;	//count the number of ENEMY in x<11
+        if(ENEMY[0][i] != 0 && ENEMY[1][i] >= 11)
+            e2++;	//count the number of ENEMY in x>=11
+        if(FRIEND[0][i] != 0 && FRIEND[1][i] < 11)
+            f1++;	//count the number of FRIEND in x<11
+        if(FRIEND[0][i] != 0 && FRIEND[1][i] >= 11)
+            f2++;	//count the number of FRIEND in x>=11
+    }
     for(i = 0; i < 20; i++) { //determine how many position to generate
         if(list[0][i] == 0)
             break;//If no summon slot left, break
@@ -38,11 +47,11 @@ void organizer::position(void) {
             if(ENEMY[2][j] < 24) {
                 n = ENEMY[2][j] - 11;
                 n = rand() % n + 11;
-                if(ENEMY[1][j] < 11) {
+                if(e1 - f1 > e2 - f2) {
                     cout << "1 " << (char)list[1][i] <<' ' <<(ENEMY[1][j]+rand()%4+1) << ' '<< n << '\n';//summon between enemy and castle
                     record = 1; //record executing cout
                     break;
-                } else if(ENEMY[1][j] >= 11) {
+                } else if(e1 -f1 <= e2 -f2) {
                     cout << "1 " << (char)list[1][i] <<' ' <<(ENEMY[1][j]-rand()%4-1) << ' '<< n << '\n';
                     record = 1;
                     break;
@@ -50,7 +59,7 @@ void organizer::position(void) {
             }
         }
         if(record == 0) {	//generate random position
-            if(rand() % 2 == 0)
+            if(e1 - f1 > e2 - f2)
                 cout << "1 " << (char)list[1][i] << ' ' << (rand()%6+3)<< ' ' << (rand()%13+11) << '\n';
             else cout << "1 " << (char)list[1][i] << ' ' << (rand()%6+13)<< ' ' << (rand()%13+11) << '\n';
         }
@@ -139,7 +148,7 @@ void organizer::getDATA(void) {
     for(i = 0; i < 6; i++)
         cout << TOWER[1][i] << ' ';
     cout << endl;
-    cout << FRIEND[0][1] << ' ' << FRIEND[1][1] << ' '<<FRIEND[2][1] << ' ' << FRIEND[3][1] << endl;
+    cout << FRIEND[0][0] << ' ' << FRIEND[1][0] << ' '<<FRIEND[2][0] << ' ' << FRIEND[3][0] << endl;
     for(i = 0; i < 10; i++)
         cout << list[0][i] << ' ';
     cout << endl;

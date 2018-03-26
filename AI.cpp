@@ -50,12 +50,14 @@ int main(void) {
             while( str != "END") {
                 if(str == "FRIEND") {
                     cin >> ch >> dscd >> i >> dscdc >> j >> dscd >> k;
-                    AI.setFRIEND(ch, i, j, k, m);
+                    if(m < 30)
+                        AI.setFRIEND(ch, i, j, k, m);
                     m++;
                 }          //(i, j): position, k: hp, m or n: count
                 if(str == "ENEMY") {
                     cin >> ch >> dscd >> i >> dscdc >> j >> dscd >> k;
-                    AI.setENEMY(ch, i, j, k, n);
+                    if(n < 30)
+                        AI.setENEMY(ch, i, j, k, n);
                     n++;
                 }
                 cin >> str;
