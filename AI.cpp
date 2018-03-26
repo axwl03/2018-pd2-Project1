@@ -25,7 +25,6 @@ int main(void) {
         }
         if(str == "TIME") {	//TIME
             cin >> i;
-            AI.setTIME(i);
         }
         if(str == "MANA") {
             cin >> i;
@@ -37,13 +36,11 @@ int main(void) {
         }
         if(str == "TOWER") {	//TOWER
             cin >> i >> j;	//i: TOWER id, j: TOWER hp
-            AI.setTOWER(i, j);
             while(1) {
                 cin >> str;
                 if(str != "TOWER")
                     break;
                 cin >> i >> j;
-                AI.setTOWER(i, j);
             }
         }
         if(str == "FRIEND" || str == "ENEMY") {	//FRIEND or ENEMY
@@ -51,13 +48,13 @@ int main(void) {
                 if(str == "FRIEND") {
                     cin >> ch >> dscd >> i >> dscdc >> j >> dscd >> k;
                     if(m < 30)
-                        AI.setFRIEND(ch, i, j, k, m);
+                        AI.setFRIEND(ch, i, j, m);
                     m++;
                 }          //(i, j): position, k: hp, m or n: count
                 if(str == "ENEMY") {
                     cin >> ch >> dscd >> i >> dscdc >> j >> dscd >> k;
                     if(n < 30)
-                        AI.setENEMY(ch, i, j, k, n);
+                        AI.setENEMY(ch, i, j, n);
                     n++;
                 }
                 cin >> str;

@@ -1,7 +1,4 @@
 #include "proj_class.h"
-void organizer::setTIME(int i) {
-    TIME = i;
-}
 void organizer::setMANA(int i) {
     MANA = i;
 }
@@ -10,21 +7,15 @@ void organizer::setDECK(char a[]) {
     for(i = 0; i < 4; i++)
         card[i] = a[i];
 }
-void organizer::setTOWER(int i, int j) {
-    TOWER[0][i-1] = i;
-    TOWER[1][i-1] = j;
-}
-void organizer::setFRIEND(char ch, int i, int j, int k, int m) {
+void organizer::setFRIEND(char ch, int i, int j, int m) {
     FRIEND[0][m] = ch;
     FRIEND[1][m] = i;
     FRIEND[2][m] = j;
-    FRIEND[3][m] = k;
 }
-void organizer::setENEMY(char ch, int i, int j, int k, int n) {
+void organizer::setENEMY(char ch, int i, int j, int n) {
     ENEMY[0][n] = ch;
     ENEMY[1][n] = i;
     ENEMY[2][n] = j;
-    ENEMY[3][n] = k;
 }
 void organizer::position(void) {
     int i, n, record = 0, j, f1 = 0, f2 = 0, e1 = 0, e2 = 0;
@@ -33,14 +24,25 @@ void organizer::position(void) {
             e1++;	//count the number of ENEMY in x<11
         if(ENEMY[0][i] != 0 && ENEMY[1][i] >= 11)
             e2++;	//count the number of ENEMY in x>=11
-        if(FRIEND[0][i] != 0 && FRIEND[1][i] < 11)
+        if(FRIEND[0][i] != 0 && FRIEND[1][i] < 11 && FRIEND[2][j] > 11)
             f1++;	//count the number of FRIEND in x<11
-        if(FRIEND[0][i] != 0 && FRIEND[1][i] >= 11)
+        if(FRIEND[0][i] != 0 && FRIEND[1][i] >= 11 && FRIEND[2][j] > 11)
             f2++;	//count the number of FRIEND in x>=11
     }
     for(i = 0; i < 20; i++) { //determine how many position to generate
         if(list[0][i] == 0)
             break;//If no summon slot left, break
+
+		if(list[1][i] == '9' || list[1][i] == '5'){
+			if(rand()%2 == 0){
+				cout << "1 " << (char)list[1][i] <<' ' <<(rand()%4+3) << ' '<<(rand()%6+1) << '\n';
+				break;
+			}else{ 
+				cout << "1 " << (char)list[1][i] <<' ' <<(rand()%4+15) << ' ' <<(rand()%6+1) << '\n';
+				break;
+			}
+		}
+
         for(j = 0; j < 30; j++) { //deal with enemy closed to castle
             if(ENEMY[0][j] == 0)
                 break;
@@ -127,7 +129,7 @@ void organizer::summon(void) {
             list[1][c-1] = '8';
             MANA -= 5;
         }
-        if(card[i] == '5' && MANA >= 1 && FRIEND[0][4] != 0) {
+        if(card[i] == '5' && MANA >= 1) {
             c++;
             list[0][c-1] = c;
             list[1][c-1] = '5';
@@ -135,35 +137,11 @@ void organizer::summon(void) {
         }
     }
 }
-void organizer::getDATA(void) {
-    cout << "*****"<< endl << TIME << endl;
-    cout << MANA << endl;
-    int i;
-    for(i = 0; i < 4; i++)
-        cout << card[i];
-    cout << endl;
-    for(i = 0; i < 6; i++)
-        cout << TOWER[0][i] << ' ';
-    cout << endl;
-    for(i = 0; i < 6; i++)
-        cout << TOWER[1][i] << ' ';
-    cout << endl;
-    cout << FRIEND[0][0] << ' ' << FRIEND[1][0] << ' '<<FRIEND[2][0] << ' ' << FRIEND[3][0] << endl;
-    for(i = 0; i < 10; i++)
-        cout << list[0][i] << ' ';
-    cout << endl;
-    for(i = 0; i < 10; i++)
-        cout << (char)list[1][i] << ' ';
-    cout << endl;
-    cout << endl << "***" << endl;
-}
 void organizer::cleanARRAY(void) {
-    int *p = &TOWER[0][0];
-    for(; p <= &TOWER[1][5]; p++)
+    int *p;
+    for(p = &FRIEND[0][0]; p <= &FRIEND[2][29]; p++)
         *p = 0;
-    for(p = &FRIEND[0][0]; p <= &FRIEND[3][29]; p++)
-        *p = 0;
-    for(p = &ENEMY[0][0]; p <= &ENEMY[3][29]; p++)
+    for(p = &ENEMY[0][0]; p <= &ENEMY[2][29]; p++)
         *p = 0;
     for(p = &list[0][0]; p <= &list[1][19]; p++)
         *p = 0;
