@@ -9,7 +9,7 @@ using namespace std;
 int main(void) {
     organizer AI;     //object
     string str, dscd;	//str: reading first word in each line
-    int i, j, k, m, n, c = 0;	//for reading numbers
+    int i, j, k, m, n;	//for reading numbers
     char card[4], ch, dscdc;	//dscd dscdc: discard
     srand((unsigned)time(NULL));
 //	cout << "9 4 3 6 2 C 7 8\n";	//initializing
@@ -60,20 +60,8 @@ int main(void) {
                 cin >> str;
             }
         }
-#ifdef DEBUG
-        AI.getDATA();
-#endif
         if(str == "END") {
-            if(c < 100) {
-                AI.summon();	//set summon list
-                AI.position();	//set minion position and cout
-            } else {
-                AI.summonP();   //summon powerful minion
-                AI.position();
-                if(c > 130)
-                    c = 0;
-            }
-            c++;
+            AI.Summon();
             cout << "0\n";	//terminates
             AI.cleanARRAY();
 

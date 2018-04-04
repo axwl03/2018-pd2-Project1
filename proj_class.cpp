@@ -29,115 +29,97 @@ void organizer::position(void) {
         if(FRIEND[0][i] != 0 && FRIEND[1][i] >= 11 && FRIEND[2][j] > 11)
             f2++;	//count the number of FRIEND in x>=11
     }
-    for(i = 0; i < 20; i++) { //determine how many position to generate
-        if(list[0][i] == 0)
-            break;//If no summon slot left, break
-
-        if(list[1][i] == '9') { //put 9 in the front
-            cout << "1 " << (char)list[1][i] <<' ' <<(rand()%20+1) << ' '<<(rand()%4+20) << '\n';
+    for(j = 0; j < 30; j++) { //deal with enemy closed to castle
+        if(ENEMY[0][j] == 0)
             break;
-        }
-
-        for(j = 0; j < 30; j++) { //deal with enemy closed to castle
-            if(ENEMY[0][j] == 0)
+        if(ENEMY[2][j] < 24) {
+            n = ENEMY[2][j] - 11;
+            n = rand() % n + 11;
+            if(e1 - f1 > e2 - f2) {
+                cout <<(ENEMY[1][j]+rand()%4+1) << ' '<< n << '\n';//summon between enemy and castle
+                record = 1; //record executing cout
                 break;
-            if(ENEMY[2][j] < 24) {
-                n = ENEMY[2][j] - 11;
-                n = rand() % n + 11;
-                if(e1 - f1 > e2 - f2) {
-                    cout << "1 " << (char)list[1][i] <<' ' <<(ENEMY[1][j]+rand()%4+1) << ' '<< n << '\n';//summon between enemy and castle
-                    record = 1; //record executing cout
-                    break;
-                } else if(e1 -f1 <= e2 -f2) {
-                    cout << "1 " << (char)list[1][i] <<' ' <<(ENEMY[1][j]-rand()%4-1) << ' '<< n << '\n';
-                    record = 1;
-                    break;
-                }
+            } else if(e1 -f1 <= e2 -f2) {
+                cout <<(ENEMY[1][j]-rand()%4-1) << ' '<< n << '\n';
+                record = 1;
+                break;
             }
         }
-        if(record == 0) {	//generate random position
-            if(e1 - f1 > e2 - f2)
-                cout << "1 " << (char)list[1][i] << ' ' << (rand()%6+3)<< ' ' << (rand()%13+11) << '\n';
-            else cout << "1 " << (char)list[1][i] << ' ' << (rand()%6+13)<< ' ' << (rand()%13+11) << '\n';
-        }
+    }
+    if(record == 0) {	//generate random position
+        if(e1 - f1 > e2 - f2)
+            cout << (rand()%6+3)<< ' ' << (rand()%13+11) << '\n';
+        else cout << (rand()%6+13)<< ' ' << (rand()%13+11) << '\n';
     }
 }
-void organizer::summonP(void) {
-    int i, c = 0;
-    for(i = 0; i < 4 ; i++) {
-        if(card[i] == '7' && MANA >= 8) {
-            c++;
-            list[0][c-1] = c;
-            list[1][c-1] = '7';
-            MANA -= 8;
-        }
-        if(card[i] == 'C' && MANA >= 7) {
-            c++;
-            list[0][c-1] = c;
-            list[1][c-1] = 'C';
-            MANA -= 7;
-        }
-        if(card[i] == '4' && MANA >= 6) {
-            c++;
-            list[0][c-1] = c;
-            list[1][c-1] = '4';
-            MANA -= 6;
-        }
-    }
-}
-void organizer::summon(void) {
-    int i, c = 0;
-    for(i = 0; i < 4; i++) {
-        if(card[i] == '1' && MANA >= 5) {
-            c++;
-            list[0][c-1] = c;
-            list[1][c-1] = '1';
-            MANA -= 5;
-        }
-        if(card[i] == '6' && MANA >= 4) {
-            c++;
-            list[0][c-1] = c;
-            list[1][c-1] = '6';
-            MANA -= 4;
-        }
-        if(card[i] == '2' && MANA >= 3 && FRIEND[0][3] != 0) {
-            c++;
-            list[0][c-1] = c;
-            list[1][c-1] = '2';
-            MANA -= 3;
-        }
-        if(card[i] == '3'&& MANA >= 2) {
-            c++;
-            list[0][c-1] = c;
-            list[1][c-1] = '3';
-            MANA -= 2;
-        }
+void organizer::Summon(void) {
+    int i, c = 100;
+    for(i = 0; i < 4; i++) { //9 first
         if(card[i] == '9' && MANA >= 3) {
-            c++;
-            list[0][c-1] = c;
-            list[1][c-1] = '9';
+            cout << "1 9 " <<(rand()%20+1) << ' '<<(rand()%4+20) << '\n';
             MANA -= 3;
         }
-        if(card[i] == '8' && MANA >= 5 && FRIEND[0][5] != 0) {
-            c++;
-            list[0][c-1] = c;
-            list[1][c-1] = '8';
-            MANA -= 5;
-        }
-        if(card[i] == '5' && MANA >= 1) {
-            c++;
-            list[0][c-1] = c;
-            list[1][c-1] = '5';
-            MANA -= 1;
-        }
     }
+    if(count <= c) {
+        for(i = 0; i < 4; i++) { //main attack forces
+            if(card[i] == '7' && MANA >= 8) {
+                cout << "1 7 ";
+                position();
+                MANA -= 8;
+            }
+        }
+        for(i = 0; i < 4; i++) {
+            if(card[i] == '4' && MANA >= 6) {
+                cout << "1 4 ";
+                position();
+                MANA -= 6;
+            }
+        }
+        for(i = 0; i < 4; i++) {
+            if(card[i] == '1' && MANA >= 5) {
+                cout << "1 1 ";
+                position();
+                MANA -= 5;
+            }
+        }
+        for(i = 0; i < 4; i++) {
+            if(card[i] == '6' && MANA >= 4) {
+                cout << "1 6 ";
+                position();
+                MANA -= 4;
+            }
+        }
+    } else {
+        for(i = 0; i < 4; i++) { //healing team and others
+            if(card[i] == '2' && MANA >= 3) {
+                cout << "1 2 ";
+                position();
+                MANA -= 3;
+            }
+            if(card[i] == '3'&& MANA >= 2) {
+                cout << "1 3 ";
+                position();
+                MANA -= 2;
+            }
+            if(card[i] == '8' && MANA >= 5 && FRIEND[0][5] != 0) {
+                cout << "1 8 ";
+                position();
+                MANA -= 5;
+            }
+            if(card[i] == '5' && MANA >= 1) {
+                cout << "1 5 ";
+                position();
+                MANA -= 1;
+            }
+        }
+    }++count;
+    if(count >= 200)
+        count = 0;
 }
 void organizer::cleanARRAY(void) {
     int *p;
     for(p = &FRIEND[0][0]; p <= &FRIEND[2][29]; p++)
         *p = 0;
     for(p = &ENEMY[0][0]; p <= &ENEMY[2][29]; p++)
-        *p = 0;
-    for(p = &list[0][0]; p <= &list[1][19]; p++)
         *p = 0;
 }
