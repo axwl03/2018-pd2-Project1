@@ -53,13 +53,23 @@ void organizer::position(void) {
     }
 }
 void organizer::Summon(void) {
-    int i, c = 100;
+    int i, c = 500;
     for(i = 0; i < 4; i++) { //9 first
         if(card[i] == '9' && MANA >= 3) {
             cout << "1 9 " <<(rand()%20+1) << ' '<<(rand()%4+20) << '\n';
             MANA -= 3;
         }
     }
+	for(i = 0; i < 4; i++) {
+		if(card[i] == '7') {
+			if(MANA < 8)
+				return;
+			else
+				cout << "1 7 ";
+				position();
+				MANA -= 8;
+		}
+	}
     if(count <= c) {
         for(i = 0; i < 4; i++) { //main attack forces
             if(card[i] == '7' && MANA >= 8) {
@@ -113,7 +123,7 @@ void organizer::Summon(void) {
             }
         }
     }++count;
-    if(count >= 200)
+    if(count >= c+100)
         count = 0;
 }
 void organizer::cleanARRAY(void) {
