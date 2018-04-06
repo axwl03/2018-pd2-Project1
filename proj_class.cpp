@@ -47,7 +47,7 @@ void organizer::position(void) {
         }
     }
     if(record == 0) {	//generate random position
-        if(e1 - f1 > e2 - f2)
+        if(e1 > e2)
             cout << (rand()%6+3)<< ' ' << (rand()%9+15) << '\n';
         else cout << (rand()%6+13)<< ' ' << (rand()%9+15) << '\n';
     }
@@ -72,13 +72,13 @@ void organizer::Summon(void) {
         }
     }
 	for(i = 0; i < 4; i++) {
-		if(card[i] == '6') {
-			if(MANA < 4)
+		if(card[i] == '4') {
+			if(MANA < 6)
 				return;
 			else {
-				cout << "1 6 ";
+				cout << "1 4 ";
 				position();
-				MANA -= 4;
+				MANA -= 6;
 			}
 		}
 	}
