@@ -54,12 +54,12 @@ void organizer::position(void) {
 }
 void organizer::Summon(void) {
     int i, c = 500;
-    for(i = 0; i < 4; i++) { //9 first
+/*    for(i = 0; i < 4; i++) { //9 first
         if(card[i] == '9' && MANA >= 3) {
             cout << "1 9 " <<(rand()%20+1) << ' '<<(rand()%4+20) << '\n';
             MANA -= 3;
         }
-    }
+    }*/
     for(i = 0; i < 4; i++) { //if 7 on the deck, summon 7 first
         if(card[i] == '7') {
             if(MANA < 8)
@@ -82,8 +82,8 @@ void organizer::Summon(void) {
 			}
 		}
 	}
-	for(i = 0; i < 4; i++) {//summon 7 if it's on the deck and FRIEND >5 
-        if(card[i] == 'C' && FRIEND[0][5] != 0) {
+	for(i = 0; i < 4; i++) {//summon C if it's on the deck and FRIEND 4
+        if(card[i] == 'C' && FRIEND[0][3] != 0) {
 		     if(MANA < 7)
 			    return;
 			 else {
@@ -108,6 +108,13 @@ void organizer::Summon(void) {
                 MANA -= 5;
             }
         }
+		for(i = 0; i < 4; i++) {
+			if(card[i] == '3') {
+				cout "1 3 ";
+				position();
+				MANA -= 2;
+			}
+		}
     } else {
         for(i = 0; i < 4; i++) { //healing team and others
             if(card[i] == '2' && MANA >= 3) {
