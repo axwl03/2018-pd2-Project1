@@ -61,24 +61,35 @@ void organizer::Summon(void) {
         }
     }*/
     for(i = 0; i < 4; i++) { //if 7 on the deck, summon 7 first
-        if(card[i] == '7') {
-            if(MANA < 8)
+        if(card[i] == '4') {
+            if(MANA < 6)
                 return;
             else {
-                cout << "1 7 ";
+                cout << "1 4 ";
          	    position();
-         	    MANA -= 8;
+         	    MANA -= 6;
 			}
         }
     }
 	for(i = 0; i < 4; i++) {//if 4 on the deck, summon 4 
-		if(card[i] == '4') {
-			if(MANA < 6)
+		if(card[i] == '6') {
+			if(MANA < 4)
 				return;
 			else {
-				cout << "1 4 ";
+				cout << "1 6 ";
 				position();
-				MANA -= 6;
+				MANA -= 4;
+			}
+		}
+	}
+	for(i = 0; i < 4; i++) { //summon 7
+		if(card[i] == '7') {
+			if(MANA < 8)
+				return;
+			else {
+				cout << "1 7 ";
+				position();
+				MANA -= 8;
 			}
 		}
 	}
