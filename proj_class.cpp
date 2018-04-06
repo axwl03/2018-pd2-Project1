@@ -48,8 +48,8 @@ void organizer::position(void) {
     }
     if(record == 0) {	//generate random position
         if(e1 - f1 > e2 - f2)
-            cout << (rand()%6+3)<< ' ' << (rand()%13+11) << '\n';
-        else cout << (rand()%6+13)<< ' ' << (rand()%13+11) << '\n';
+            cout << (rand()%6+3)<< ' ' << (rand()%9+15) << '\n';
+        else cout << (rand()%6+13)<< ' ' << (rand()%9+15) << '\n';
     }
 }
 void organizer::Summon(void) {
