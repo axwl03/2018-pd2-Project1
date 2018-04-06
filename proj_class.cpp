@@ -64,12 +64,24 @@ void organizer::Summon(void) {
         if(card[i] == '7') {
             if(MANA < 8)
                 return;
-            else
+            else {
                 cout << "1 7 ";
-            position();
-            MANA -= 8;
+         	    position();
+         	    MANA -= 8;
+			}
         }
     }
+	for(i = 0; i < 4; i++) {
+		if(card[i] == '6') {
+			if(MANA < 4)
+				return;
+			else {
+				cout << "1 6 ";
+				position();
+				MANA -= 4;
+			}
+		}
+	}
     if(count <= c) {
         for(i = 0; i < 4; i++) { //main attack forces
             if(card[i] == 'C' && MANA >= 7) {
