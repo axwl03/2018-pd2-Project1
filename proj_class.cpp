@@ -82,14 +82,18 @@ void organizer::Summon(void) {
 			}
 		}
 	}
-    if(count <= c) {
-        for(i = 0; i < 4; i++) { //main attack forces
-            if(card[i] == 'C' && MANA >= 7) {
-                cout << "1 C ";
-                position();
-                MANA -= 7;
-            }
-        }
+	for(i = 0; i < 4; i++) {//summon 7 if it's on the deck and FRIEND >5 
+        if(card[i] == 'C' && FRIEND[0][5] != 0) {
+		     if(MANA < 7)
+			    return;
+			 else {
+				cout << "1 C ";
+		        position();
+				MANA -= 7;
+			}
+		}
+	}
+    if(count <= c) { //main attack force
         for(i = 0; i < 4; i++) {
             if(card[i] == '6' && MANA >= 4) {
                 cout << "1 6 ";
