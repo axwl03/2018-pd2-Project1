@@ -60,22 +60,22 @@ void organizer::Summon(void) {
             MANA -= 3;
         }
     }
-	for(i = 0; i < 4; i++) {
-		if(card[i] == '7') {
-			if(MANA < 8)
-				return;
-			else
-				cout << "1 7 ";
-				position();
-				MANA -= 8;
-		}
-	}
+    for(i = 0; i < 4; i++) {
+        if(card[i] == '7') {
+            if(MANA < 8)
+                return;
+            else
+                cout << "1 7 ";
+            position();
+            MANA -= 8;
+        }
+    }
     if(count <= c) {
         for(i = 0; i < 4; i++) { //main attack forces
-            if(card[i] == '7' && MANA >= 8) {
-                cout << "1 7 ";
+            if(card[i] == 'C' && MANA >= 7) {
+                cout << "1 C ";
                 position();
-                MANA -= 8;
+                MANA -= 7;
             }
         }
         for(i = 0; i < 4; i++) {
