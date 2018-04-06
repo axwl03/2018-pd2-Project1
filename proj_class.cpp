@@ -54,13 +54,13 @@ void organizer::position(void) {
 }
 void organizer::Summon(void) {
     int i, c = 500;
-    for(i = 0; i < 4; i++) { //9 first
+/*    for(i = 0; i < 4; i++) { //9 first
         if(card[i] == '9' && MANA >= 3) {
             cout << "1 9 " <<(rand()%20+1) << ' '<<(rand()%4+20) << '\n';
             MANA -= 3;
         }
-    }
-    for(i = 0; i < 4; i++) {
+    }*/
+    for(i = 0; i < 4; i++) { //if 7 on the deck, summon 7 first
         if(card[i] == '7') {
             if(MANA < 8)
                 return;
@@ -71,7 +71,7 @@ void organizer::Summon(void) {
 			}
         }
     }
-	for(i = 0; i < 4; i++) {
+	for(i = 0; i < 4; i++) {//if 4 on the deck, summon 4 
 		if(card[i] == '4') {
 			if(MANA < 6)
 				return;
@@ -91,10 +91,10 @@ void organizer::Summon(void) {
             }
         }
         for(i = 0; i < 4; i++) {
-            if(card[i] == '4' && MANA >= 6) {
-                cout << "1 4 ";
+            if(card[i] == '6' && MANA >= 4) {
+                cout << "1 6 ";
                 position();
-                MANA -= 6;
+                MANA -= 4;
             }
         }
         for(i = 0; i < 4; i++) {
@@ -102,13 +102,6 @@ void organizer::Summon(void) {
                 cout << "1 1 ";
                 position();
                 MANA -= 5;
-            }
-        }
-        for(i = 0; i < 4; i++) {
-            if(card[i] == '6' && MANA >= 4) {
-                cout << "1 6 ";
-                position();
-                MANA -= 4;
             }
         }
     } else {
@@ -123,16 +116,16 @@ void organizer::Summon(void) {
                 position();
                 MANA -= 2;
             }
-            if(card[i] == '8' && MANA >= 5 && FRIEND[0][5] != 0) {
-                cout << "1 8 ";
-                position();
-                MANA -= 5;
-            }
             if(card[i] == '5' && MANA >= 1) {
                 cout << "1 5 ";
                 position();
                 MANA -= 1;
             }
+			if(card[i] == '9' && MANA >= 3){
+				cout << "1 9 ";
+				position();
+				MANA -= 3;
+			}
         }
     }++count;
     if(count >= c+100)
