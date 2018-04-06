@@ -139,7 +139,7 @@ void organizer::Summon(void) {
 			}
         }
     }++count;
-    if(count >= c+150)
+    if(count >= c+100)
         count = 0;
 }
 void organizer::cleanARRAY(void) {
