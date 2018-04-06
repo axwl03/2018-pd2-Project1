@@ -54,12 +54,12 @@ void organizer::position(void) {
 }
 void organizer::Summon(void) {
     int i, c = 500;
-/*    for(i = 0; i < 4; i++) { //9 first
+    for(i = 0; i < 4; i++) { //9 first
         if(card[i] == '9' && MANA >= 3) {
             cout << "1 9 " <<(rand()%20+1) << ' '<<(rand()%4+20) << '\n';
             MANA -= 3;
         }
-    }*/
+    }
     for(i = 0; i < 4; i++) { //if 7 on the deck, summon 7 first
         if(card[i] == '7') {
             if(MANA < 8)
