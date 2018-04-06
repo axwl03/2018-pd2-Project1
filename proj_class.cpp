@@ -110,7 +110,7 @@ void organizer::Summon(void) {
         }
 		for(i = 0; i < 4; i++) {
 			if(card[i] == '3') {
-				cout "1 3 ";
+				cout << "1 3 ";
 				position();
 				MANA -= 2;
 			}
