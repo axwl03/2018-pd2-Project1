@@ -14,7 +14,7 @@ int main(void) {
     srand((unsigned)time(NULL));
 //	cout << "9 4 3 6 2 C 7 8\n";	//initializing
 //	cout <<	"9 4 3 6 2 1 7 8\n";
-    cout << "7 4 6 2 9 C 1 5\n";
+    cout << "7 4 6 9 2 C 1 5\n";
     for(;;) {
         m = 0;
         n = 0;
