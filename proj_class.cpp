@@ -53,7 +53,7 @@ void organizer::position(void) {
     }
 }
 void organizer::Summon(void) {
-    int i, c = 500;
+    int i;
     for(i = 0; i < 4; i++) { //9 first
         if(card[i] == '9' && MANA >= 3) {
             cout << "1 9 " <<(rand()%20+1) << ' '<<(rand()%4+20) << '\n';
@@ -93,55 +93,46 @@ void organizer::Summon(void) {
 			}
 		}
 	}
-    if(count <= c) { //main attack force
-        for(i = 0; i < 4; i++) {
-            if(card[i] == '6' && MANA >= 4) {
-                cout << "1 6 ";
-                position();
-                MANA -= 4;
-            }
-        }
-        for(i = 0; i < 4; i++) {
-            if(card[i] == '1' && MANA >= 5) {
-                cout << "1 1 ";
-                position();
-                MANA -= 5;
-            }
-        }
-		for(i = 0; i < 4; i++) {
-			if(card[i] == '3') {
-				cout << "1 3 ";
+	for(i = 0; i < 4; i++) {//summon 6 if on the deck
+		if(card[i] == '6' &&FRIEND[0][2] != 0) {
+			if(MANA < 4)
+				return;
+			else {
+				cout << "1 6 ";
 				position();
-				MANA -= 2;
+				MANA -= 4;
 			}
 		}
-    } else {
-        for(i = 0; i < 4; i++) { //healing team and others
-            if(card[i] == '2' && MANA >= 3) {
-                cout << "1 2 ";
-                position();
-                MANA -= 3;
-            }
-            if(card[i] == '3'&& MANA >= 2) {
-                cout << "1 3 ";
-                position();
-                MANA -= 2;
-            }
-            if(card[i] == '5' && MANA >= 1) {
-                cout << "1 5 ";
-                position();
-                MANA -= 1;
-            }
-			if(card[i] == '9' && MANA >= 3){
-				cout << "1 9 ";
-				position();
-				MANA -= 3;
-			}
+	}
+    for(i = 0; i < 4; i++) { //other force
+		if(card[i] == '1' && MANA >= 5) {
+			cout << "1 1 ";
+			position();
+			MANA -= 5;
+		}
+        if(card[i] == '2' && MANA >= 3) {
+            cout << "1 2 ";
+            position();
+            MANA -= 3;
         }
-    }++count;
-    if(count >= c+200)
-        count = 0;
+        if(card[i] == '3'&& MANA >= 2) {
+            cout << "1 3 ";
+            position();
+            MANA -= 2;
+        }
+        if(card[i] == '5' && MANA >= 1) {
+            cout << "1 5 ";
+            position();
+            MANA -= 1;
+        }
+		if(card[i] == '9' && MANA >= 3){
+			cout << "1 9 ";
+			position();
+			MANA -= 3;
+		}
+	}
 }
+
 void organizer::cleanARRAY(void) {
     int *p;
     for(p = &FRIEND[0][0]; p <= &FRIEND[2][29]; p++)
