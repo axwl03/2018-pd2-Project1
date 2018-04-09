@@ -56,7 +56,8 @@ void organizer::Summon(void) {
     int i;
     for(i = 0; i < 4; i++) { //9 first
         if(card[i] == '9' && MANA >= 3) {
-            cout << "1 9 " <<(rand()%20+1) << ' '<<(rand()%4+20) << '\n';
+            cout << "1 9 ";
+			position();
             MANA -= 3;
         }
     }
@@ -136,11 +137,6 @@ void organizer::Summon(void) {
             position();
             MANA -= 1;
         }
-		if(card[i] == '9' && MANA >= 3){
-			cout << "1 9 ";
-			position();
-			MANA -= 3;
-		}
 	}
 }
 
