@@ -61,17 +61,6 @@ void organizer::Summon(void) {
             MANA -= 3;
         }
 	}
-	for(i = 0; i < 4; i++) {//if 4 on the deck, summon 4 
-		if(card[i] == '4') {
-			if(MANA < 6)
-				return;
-			else {
-				cout << "1 4 ";
-				position();
-				MANA -= 6;
-			}
-		}
-	}
     for(i = 0; i < 4; i++) { //if 7 on the deck, summon 7 first
         if(card[i] == '7') {
             if(MANA < 8)
@@ -83,6 +72,17 @@ void organizer::Summon(void) {
 			}
         }
     }
+	for(i = 0; i < 4; i++) {//if 4 on the deck, summon 4 
+		if(card[i] == '4') {
+			if(MANA < 6)
+				return;
+			else {
+				cout << "1 4 ";
+				position();
+				MANA -= 6;
+			}
+		}
+	}
 	for(i = 0; i < 4; i++) {//summon C if on the deck
         if(card[i] == 'C' && FRIEND[0][2] != 0) {
 		     if(MANA < 7)
