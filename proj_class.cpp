@@ -82,7 +82,7 @@ void organizer::Summon(void) {
 			}
 		}
 	}
-	for(i = 0; i < 4; i++) {//summon C if it's on the deck and FRIEND 4
+	for(i = 0; i < 4; i++) {//summon C if on the deck
         if(card[i] == 'C' && FRIEND[0][3] != 0) {
 		     if(MANA < 7)
 			    return;
