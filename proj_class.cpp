@@ -35,11 +35,11 @@ void organizer::position(void) {
         if(ENEMY[2][j] < 24) {
             n = ENEMY[2][j] - 11;
             n = rand() % n + 11;
-            if(e1 - f1 > e2 - f2) {
+            if(e1 - f1 > e2 - f2 && e1 > 1) {
                 cout <<(ENEMY[1][j]+rand()%4+1) << ' '<< n << '\n';//summon between enemy and castle
                 record = 1; //record executing cout
                 break;
-            } else if(e1 -f1 <= e2 -f2) {
+            } else if(e1 -f1 <= e2 -f2 && e2 > 1) {
                 cout <<(ENEMY[1][j]-rand()%4-1) << ' '<< n << '\n';
                 record = 1;
                 break;
@@ -47,7 +47,7 @@ void organizer::position(void) {
         }
     }
     if(record == 0) {	//generate random position
-        if(e1 > e2)
+        if(f1 > f2)
             cout << (rand()%6+3)<< ' ' << (rand()%9+15) << '\n';
         else cout << (rand()%6+13)<< ' ' << (rand()%9+15) << '\n';
     }
