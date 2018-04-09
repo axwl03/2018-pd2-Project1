@@ -122,7 +122,7 @@ void organizer::Summon(void) {
 			position();
 			MANA -= 5;
 		}
-        if(card[i] == '2' && MANA >= 3) {
+        if(card[i] == '2' && MANA >= 3 && FRIEND[0][4] != 0) {
             cout << "1 2 ";
             position();
             MANA -= 3;
