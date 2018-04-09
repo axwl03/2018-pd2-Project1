@@ -83,7 +83,7 @@ void organizer::Summon(void) {
 			}
         }
     }
-/*	for(i = 0; i < 4; i++) {//summon C if on the deck
+	for(i = 0; i < 4; i++) {//summon C if on the deck
         if(card[i] == 'C' && FRIEND[0][2] != 0) {
 		     if(MANA < 7)
 			    return;
@@ -93,7 +93,7 @@ void organizer::Summon(void) {
 				MANA -= 7;
 			}
 		}
-	}*/
+	}
 	for(i = 0; i < 4; i++) {//summon 6 if on the deck
 		if(card[i] == '6' &&FRIEND[0][2] != 0) {
 			if(MANA < 4)
@@ -102,17 +102,6 @@ void organizer::Summon(void) {
 				cout << "1 6 ";
 				position();
 				MANA -= 4;
-			}
-		}
-	}
-	for(i = 0; i < 4; i++) {//summon C if on the deck
-		if(card[i] == 'C' && FRIEND[0][2] != 0) {
-			if(MANA < 7)
-				return;
-			else {
-				cout << "1 C ";
-				position();
-				MANA -= 7;
 			}
 		}
 	}
