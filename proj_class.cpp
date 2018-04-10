@@ -53,7 +53,14 @@ void organizer::position(void) {
     }
 }
 void organizer::Summon(void) {
-    int i;
+    int i, sf = 0;
+	for(i = 0; i < 30; i++) { //calculate the number of 4 and 7 
+		if(FRIEND[0][i] == 0)
+			break;
+		if(FRIEND[0][i] == '7' || FRIEND[0][i] == '4') 
+			++sf;
+	}
+
     for(i = 0; i < 4; i++) { //9 first
         if(card[i] == '9' && MANA >= 3) {
             cout << "1 9 ";
@@ -68,17 +75,41 @@ void organizer::Summon(void) {
             MANA -= 1;
         }
 	}
-    for(i = 0; i < 4; i++) { //if 7 on the deck, summon 7 first
-        if(card[i] == '7') {
-            if(MANA < 8)
-                return;
-            else {
-                cout << "1 7 ";
-         	    position();
+	if(sf > 3) {
+		for(i = 0; i < 4; i++) {//summon 6 if on the deck
+			if(card[i] == '6' &&FRIEND[0][2] != 0) {
+				if(MANA < 4)
+					return;
+				else {
+					cout << "1 6 ";
+					position();
+					MANA -= 4;
+				}
+			}
+		}
+		for(i = 0; i < 4; i++) {//summon C if on the deck
+        	if(card[i] == 'C' && FRIEND[0][2] != 0) {
+		     	if(MANA < 7)
+			    	return;
+			 	else {
+					cout << "1 C ";
+		        	position();
+					MANA -= 7;
+				}
+			}
+		}
+	}
+   	for(i = 0; i < 4; i++) { //if 7 on the deck, summon 7 first
+      	if(card[i] == '7') {
+           	if(MANA < 8)
+    	        return;
+       	     else {
+       	       	cout << "1 7 ";
+       	   	    position();
          	    MANA -= 8;
 			}
         }
-    }
+    }	
 	for(i = 0; i < 4; i++) {//if 4 on the deck, summon 4 
 		if(card[i] == '4') {
 			if(MANA < 6)
@@ -87,28 +118,6 @@ void organizer::Summon(void) {
 				cout << "1 4 ";
 				position();
 				MANA -= 6;
-			}
-		}
-	}
-	for(i = 0; i < 4; i++) {//summon 6 if on the deck
-		if(card[i] == '6' &&FRIEND[0][2] != 0) {
-			if(MANA < 4)
-				return;
-			else {
-				cout << "1 6 ";
-				position();
-				MANA -= 4;
-			}
-		}
-	}
-	for(i = 0; i < 4; i++) {//summon C if on the deck
-        if(card[i] == 'C' && FRIEND[0][2] != 0) {
-		     if(MANA < 7)
-			    return;
-			 else {
-				cout << "1 C ";
-		        position();
-				MANA -= 7;
 			}
 		}
 	}
@@ -128,11 +137,6 @@ void organizer::Summon(void) {
             position();
             MANA -= 2;
         }
-/*        if(card[i] == '5' && MANA >= 1) {
-            cout << "1 5 ";
-            position();
-            MANA -= 1;
-        }*/
 	}
 }
 
