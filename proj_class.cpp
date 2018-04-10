@@ -61,6 +61,13 @@ void organizer::Summon(void) {
             MANA -= 3;
         }
 	}
+    for(i = 0; i < 4; i++) { //5 second
+        if(card[i] == '5' && MANA >= 1) {
+            cout << "1 5 ";
+			position();
+            MANA -= 1;
+        }
+	}
     for(i = 0; i < 4; i++) { //if 7 on the deck, summon 7 first
         if(card[i] == '7') {
             if(MANA < 8)
@@ -121,11 +128,11 @@ void organizer::Summon(void) {
             position();
             MANA -= 2;
         }
-        if(card[i] == '5' && MANA >= 1) {
+/*        if(card[i] == '5' && MANA >= 1) {
             cout << "1 5 ";
             position();
             MANA -= 1;
-        }
+        }*/
 	}
 }
 
