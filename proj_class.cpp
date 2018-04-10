@@ -106,11 +106,11 @@ void organizer::Summon(void) {
 		}
 	}
     for(i = 0; i < 4; i++) { //other force
-		if(card[i] == '1' && MANA >= 5) {
+/*		if(card[i] == '1' && MANA >= 5) {
 			cout << "1 1 ";
 			position();
 			MANA -= 5;
-		}
+		}*/
         if(card[i] == '2' && MANA >= 3 && FRIEND[0][4] != 0) {
             cout << "1 2 ";
             position();

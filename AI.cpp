@@ -12,7 +12,7 @@ int main(void) {
     int i, j, k, m, n;	//for reading numbers
     char card[4], ch, dscdc;	//dscd dscdc: discard
     srand((unsigned)time(NULL));
-    cout << "7 4 6 9 2 C 1 5\n";
+    cout << "1 9 7 4 5 6 C 3\n";
     for(;;) {
         m = 0;
         n = 0;
